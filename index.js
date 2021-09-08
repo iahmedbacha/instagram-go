@@ -7,6 +7,8 @@ const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 
+const refresh = parseInt(process.env.REFRESH, 10);
+
 // puppeteer usage as normal
 (async () => {
   try {
@@ -52,7 +54,7 @@ puppeteer.use(StealthPlugin());
         await page.click('.sqdOP.L3NKy.y3zKF');
         await page.waitForSelector(".gxNyb");
       }
-    }, 10000);
+    }, refresh);
   }
   catch (err) {
     console.log("Warning: possible timeout has occured, program still running.");
