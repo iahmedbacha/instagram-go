@@ -49,7 +49,14 @@ const refresh = parseInt(process.env.REFRESH, 10);
         await page.waitForSelector("#pepBio");
         await page.evaluate( () => document.getElementById("pepBio").value = "");
         await page.focus('#pepBio');
-        await page.keyboard.type("This account has: " + followersNext + " followers.");
+        await page.keyboard.type(process.env.PREFIX);
+        if (followersNext == "0" || followersNext == "1") {
+          await page.keyboard.type("This account has: " + followersNext + " follower.");
+        }
+        else {
+          await page.keyboard.type("This account has: " + followersNext + " followers.");
+        }
+        await page.keyboard.type(process.env.POSTFIX);
         followersCurrent = followersNext;
         await page.click('.sqdOP.L3NKy.y3zKF');
         await page.waitForSelector(".gxNyb");
